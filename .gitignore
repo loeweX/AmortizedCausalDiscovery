@@ -1,0 +1,29 @@
+*,cover
+*.swp
+*__pycache__*
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# generated data
+data/*.npy
+
+##own
+.idea/
+*.ckpt
+*.mp4
+logs/
+.DS_Store
+journal/
+Session.vim
+*.swo

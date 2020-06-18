@@ -1,0 +1,10 @@
+name: ACD
+channels:
+  - defaults
+dependencies:
+  - torchvision
+  - cudatoolkit=10.1
+  - pytorch
+  - pylint
+  - pandas
+  - seaborn
