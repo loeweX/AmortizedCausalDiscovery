@@ -2,7 +2,7 @@
 
 This repo contains the official PyTorch implementation of:
 
-Sindy Löwe*, David Madras*, Richard Zemel, Max Welling - [Amortized Causal Discovery: Learning to Infer Causal Graphs from Time-Series Data](https://arxiv.org/abs/1905.11786)
+Sindy Löwe*, David Madras*, Richard Zemel, Max Welling - [Amortized Causal Discovery: Learning to Infer Causal Graphs from Time-Series Data](https://arxiv.org/abs/2006.10833)
 
 With Amortized Causal Discovery we learn to infer causal relations from samples with different underlying causal graphs but shared dynamics.
 This enables us to generalize across samples and thus improve our performance with increasing training data size.
