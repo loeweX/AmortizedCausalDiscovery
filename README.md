@@ -125,3 +125,6 @@ Please cite our paper if you use this code in your own work:
 
 ## References 
 - [Neural Relational Inference for Interacting Systems - Kipf et al.](https://arxiv.org/abs/1802.04687)
+
+## Acknowledgements
+The Robert Bosch GmbH is acknowledged for financial support.
