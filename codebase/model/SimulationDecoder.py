@@ -3,7 +3,7 @@ import torch
 
 
 class SimulationDecoder(nn.Module):
-    """Simulation-based decoder."""
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
 
     def __init__(self, loc_max, loc_min, vel_max, vel_min, suffix):
         super(SimulationDecoder, self).__init__()
@@ -20,7 +20,7 @@ class SimulationDecoder(nn.Module):
             self.interaction_strength = 0.1
             # original simulation used sample_freq, _delta_T = 100, 0.001
             # we use 1, 0.1 instead for computational efficiency
-            self.sample_freq = 1 
+            self.sample_freq = 1
             self._delta_T = 0.1
             self.box_size = 5.0
         else:
@@ -106,11 +106,7 @@ class SimulationDecoder(nn.Module):
 
             # Tricks for parallel processing of time steps
             pair_dist = pair_dist.view(
-                inputs.size(0),
-                (inputs.size(2) - 1),
-                inputs.size(1),
-                inputs.size(1),
-                2,
+                inputs.size(0), (inputs.size(2) - 1), inputs.size(1), inputs.size(1), 2,
             )
             forces = (forces_size.unsqueeze(-1).unsqueeze(1) * pair_dist).sum(3)
 

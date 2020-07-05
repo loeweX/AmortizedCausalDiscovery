@@ -1,3 +1,5 @@
+"""Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import time
@@ -271,8 +273,8 @@ if __name__ == "__main__":
 
     plt.show()
 
-    # create animation
-    # Set up formatting for the movie files
+    # Create animation.
+    # Set up formatting for the movie files.
     Writer = animation.writers["ffmpeg"]
     writer = Writer(fps=15, metadata=dict(artist="Me"), bitrate=1800)
 

@@ -5,6 +5,8 @@ _EPS = 1e-10
 
 
 class CNNEncoder(Encoder):
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
     def __init__(
         self, args, n_in, n_hid, n_out, do_prob=0.0, factor=True, n_in_mlp1=None
     ):

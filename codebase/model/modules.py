@@ -6,7 +6,7 @@ import torch
 from model import utils
 
 class MLP(nn.Module):
-    """Two-layer fully-connected ELU net with batch norm."""
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
 
     def __init__(self, n_in, n_hid, n_out, do_prob=0.0, use_batch_norm=True, final_linear=False):
         super(MLP, self).__init__()
@@ -53,6 +53,8 @@ class MLP(nn.Module):
 
 
 class CNN(nn.Module):
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
     def __init__(self, n_in, n_hid, n_out, do_prob=0.0):
         super(CNN, self).__init__()
         self.pool = nn.MaxPool1d(

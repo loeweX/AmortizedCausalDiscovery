@@ -5,6 +5,8 @@ from model.Encoder import Encoder
 
 
 class MLPEncoder(Encoder):
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
     def __init__(self, args, n_in, n_hid, n_out, do_prob=0.0, factor=True):
         super().__init__(args, factor)
 
@@ -20,7 +22,6 @@ class MLPEncoder(Encoder):
         self.fc_out = nn.Linear(n_hid, n_out)
 
         self.init_weights()
-
 
     def forward(self, inputs, rel_rec, rel_send):
         # Input shape: [num_sims, num_atoms, num_timesteps, num_dims]

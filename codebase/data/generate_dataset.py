@@ -1,3 +1,5 @@
+"""Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
 import os
 import json
 import time

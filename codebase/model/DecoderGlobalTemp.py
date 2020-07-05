@@ -1,21 +1,21 @@
-import time
 from model.modules import *
 from model.SimulationDecoder import SimulationDecoder
 from model import utils
 
+
 class MLPDecoderGlobalTemp(nn.Module):
-    """MLP decoder module."""
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
 
     def __init__(
-            self,
-            n_in_node,
-            edge_types,
-            msg_hid,
-            msg_out,
-            n_hid,
-            do_prob=0.0,
-            skip_first=False,
-            latent_dim=32
+        self,
+        n_in_node,
+        edge_types,
+        msg_hid,
+        msg_out,
+        n_hid,
+        do_prob=0.0,
+        skip_first=False,
+        latent_dim=32,
     ):
         super(MLPDecoderGlobalTemp, self).__init__()
         self.msg_fc1 = nn.ModuleList(
@@ -37,7 +37,12 @@ class MLPDecoderGlobalTemp(nn.Module):
         self.dropout_prob = do_prob
 
     def single_step_forward(
-            self, single_timestep_inputs, latents, rel_rec, rel_send, single_timestep_rel_type
+        self,
+        single_timestep_inputs,
+        latents,
+        rel_rec,
+        rel_send,
+        single_timestep_rel_type,
     ):
 
         # single_timestep_inputs has shape
@@ -69,7 +74,7 @@ class MLPDecoderGlobalTemp(nn.Module):
             msg = F.relu(self.msg_fc1[i](pre_msg))
             msg = F.dropout(msg, p=self.dropout_prob)
             msg = F.relu(self.msg_fc2[i](msg))
-            msg = msg * single_timestep_rel_type[:, :, :, i: i + 1]
+            msg = msg * single_timestep_rel_type[:, :, :, i : i + 1]
             all_msgs += msg
 
         # Aggregate all msgs to receiver
@@ -139,10 +144,12 @@ class MLPDecoderGlobalTemp(nn.Module):
 
 
 class SimulationDecoderGlobalTemp(SimulationDecoder):
-    """Simulation-based decoder."""
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
 
     def __init__(self, loc_max, loc_min, vel_max, vel_min, suffix):
-        super(SimulationDecoderGlobalTemp, self).__init__(loc_max, loc_min, vel_max, vel_min, suffix)
+        super(SimulationDecoderGlobalTemp, self).__init__(
+            loc_max, loc_min, vel_max, vel_min, suffix
+        )
 
     def forward(self, inputs, relations, latents, rel_rec, rel_send, pred_steps=1):
         temperature = latents.unsqueeze(2)
@@ -162,7 +169,6 @@ class SimulationDecoderGlobalTemp(SimulationDecoder):
         vel = vel.view(inputs.size(0) * (inputs.size(2) - 1), inputs.size(1), 2)
 
         loc, vel = self.unnormalize(loc, vel)
-
 
         offdiag_indices = utils.get_offdiag_indices(inputs.size(1))
         edges = torch.zeros(relations.size(0), inputs.size(1) * inputs.size(1))

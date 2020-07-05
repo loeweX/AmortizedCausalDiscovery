@@ -1,3 +1,5 @@
+"""Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
 import numpy as np
 import os
 import time

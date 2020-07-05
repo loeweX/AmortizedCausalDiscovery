@@ -24,6 +24,7 @@ class Encoder(nn.Module):
                 m.bias.data.zero_()
 
     def node2edge_temporal(self, inputs, rel_rec, rel_send):
+        """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
         # NOTE: Assumes that we have the same graph across all samples.
 
         x = inputs.view(inputs.size(0), inputs.size(1), -1)
@@ -46,11 +47,13 @@ class Encoder(nn.Module):
         return edges
 
     def edge2node(self, x, rel_rec, rel_send):
+        """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
         # NOTE: Assumes that we have the same graph across all samples.
         incoming = torch.matmul(rel_rec.t(), x)
         return incoming / incoming.size(1)
 
     def node2edge(self, x, rel_rec, rel_send):
+        """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
         # NOTE: Assumes that we have the same graph across all samples.
         receivers = torch.matmul(rel_rec, x)
         senders = torch.matmul(rel_send, x)

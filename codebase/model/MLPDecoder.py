@@ -3,7 +3,7 @@ import torch
 from model.modules import *
 
 class MLPDecoder(nn.Module):
-    """MLP decoder module."""
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
 
     def __init__(
         self,

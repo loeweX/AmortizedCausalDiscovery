@@ -140,8 +140,8 @@ def load_model(args, loc_max, loc_min, vel_max, vel_min):
         encoder = None
         edge_probs = load_distribution(args)
         optimizer = optim.Adam(
-            [{"params": edge_probs, "lr": args.lr_z}] +
-            [{"params": decoder.parameters(), "lr": args.lr}]
+            [{"params": edge_probs, "lr": args.lr_z}]
+            + [{"params": decoder.parameters(), "lr": args.lr}]
         )
 
     scheduler = lr_scheduler.StepLR(

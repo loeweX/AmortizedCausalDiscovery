@@ -68,6 +68,8 @@ def data_preparation(
     num_atoms,
     temperature=None,
 ):
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
     # Normalize to [-1, 1]
     loc = normalize(loc, loc_min, loc_max)
     vel = normalize(vel, vel_min, vel_max)
@@ -93,6 +95,8 @@ def data_preparation(
 
 
 def load_springs_data(args, batch_size=1, suffix="", datadir="data"):
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
     print("Loading data from {}".format(datadir))
     loc_train = np.load(os.path.join(datadir, "loc_train" + suffix + ".npy"))
     vel_train = np.load(os.path.join(datadir, "vel_train" + suffix + ".npy"))
@@ -169,10 +173,10 @@ def load_springs_data(args, batch_size=1, suffix="", datadir="data"):
         temperature=temperatures_test,
     )
     train_data_loader = DataLoader(
-        train_data, batch_size=batch_size, shuffle=True  # , num_workers=8
+        train_data, batch_size=batch_size, shuffle=True, num_workers=8
     )
     valid_data_loader = DataLoader(valid_data, batch_size=batch_size, num_workers=8)
-    test_data_loader = DataLoader(test_data, batch_size=batch_size)  # , num_workers=8)
+    test_data_loader = DataLoader(test_data, batch_size=batch_size, num_workers=8)
 
     return (
         train_data_loader,
@@ -204,6 +208,8 @@ def load_temperatures(suffix="", datadir="data"):
 
 
 def load_ode_data(args, batch_size=1, suffix="", datadir="data"):
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
+
     feat_train = np.load(os.path.join(datadir, "feat_train" + suffix + ".npy"))
     edges_train = np.load(os.path.join(datadir, "edges_train" + suffix + ".npy"))
     feat_valid = np.load(os.path.join(datadir, "feat_valid" + suffix + ".npy"))

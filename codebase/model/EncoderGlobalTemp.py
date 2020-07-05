@@ -2,13 +2,39 @@ from model.modules import *
 from model.MLPEncoder import MLPEncoder
 from model.CNNEncoder import CNNEncoder
 
-class CNNEncoderGlobalTemp(CNNEncoder):
-    def __init__(self, args, n_in, n_hid, n_out, do_prob=0.0, factor=True, latent_dim=2, latent_sample_dim=1, num_atoms=5, num_timesteps=49):
-        super().__init__(args, n_in, n_hid, n_out, do_prob, factor, n_in_mlp1=n_hid + latent_sample_dim)
 
-        self.mlp4_confounder = MLP(n_in * num_timesteps * num_atoms, n_hid,
-                                   latent_dim, do_prob, use_batch_norm=False, 
-                                   final_linear=True)
+class CNNEncoderGlobalTemp(CNNEncoder):
+    def __init__(
+        self,
+        args,
+        n_in,
+        n_hid,
+        n_out,
+        do_prob=0.0,
+        factor=True,
+        latent_dim=2,
+        latent_sample_dim=1,
+        num_atoms=5,
+        num_timesteps=49,
+    ):
+        super().__init__(
+            args,
+            n_in,
+            n_hid,
+            n_out,
+            do_prob,
+            factor,
+            n_in_mlp1=n_hid + latent_sample_dim,
+        )
+
+        self.mlp4_confounder = MLP(
+            n_in * num_timesteps * num_atoms,
+            n_hid,
+            latent_dim,
+            do_prob,
+            use_batch_norm=False,
+            final_linear=True,
+        )
         self.init_weights()
 
     def forward(self, inputs, rel_rec, rel_send):
@@ -24,7 +50,9 @@ class CNNEncoderGlobalTemp(CNNEncoder):
 
         inferred_mu, inferred_width = utils.get_uniform_parameters_from_latents(latents)
         latent_sample = utils.sample_uniform_from_latents(inferred_mu, inferred_width)
-        l = latent_sample.view(latent_sample.size(0), 1, latent_sample.size(1)).repeat(1, x.size(1), 1)
+        l = latent_sample.view(latent_sample.size(0), 1, latent_sample.size(1)).repeat(
+            1, x.size(1), 1
+        )
         l = l.detach()
         # l = latents.view(latents.size(0), 1, latents.size(1)).repeat(1, x.size(1), 1)
 
@@ -39,4 +67,3 @@ class CNNEncoderGlobalTemp(CNNEncoder):
             x = self.mlp3(x)
 
         return self.fc_out(x), latent_sample, inferred_mu, inferred_width
-

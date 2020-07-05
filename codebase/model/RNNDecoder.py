@@ -3,8 +3,9 @@ import torch
 from model.modules import *
 from model import utils
 
+
 class RNNDecoder(nn.Module):
-    """Recurrent decoder module."""
+    """Based on https://github.com/ethanfetaya/NRI (MIT License)."""
 
     def __init__(self, n_in_node, edge_types, n_hid, do_prob=0.0, skip_first=False):
         super(RNNDecoder, self).__init__()
