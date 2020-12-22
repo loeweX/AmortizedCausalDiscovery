@@ -8,3 +8,4 @@ dependencies:
   - pylint
   - pandas
   - seaborn
+  - scikit-learn
