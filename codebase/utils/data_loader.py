@@ -318,10 +318,9 @@ def unpack_batches(args, minibatch):
         (data, relations, temperatures) = minibatch
     else:
         (data, relations) = minibatch
+        temperatures = None
     if args.cuda:
         data, relations = data.cuda(), relations.cuda()
         if args.load_temperatures:
             temperatures = temperatures.cuda()
-        else:
-            temperatures = None
     return data, relations, temperatures
