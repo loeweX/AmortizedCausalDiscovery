@@ -39,6 +39,7 @@ What we found exciting is that this allows us to achieve tremendous improvements
     ```bash
     bash setup_dependencies.sh
     ```
+  If you want to make use of your GPU, you might have to install a cuda-enabled pytorch version manually. Use the appropriate command provided [here](https://pytorch.org/) to achieve this.
 - Don't forget to activate the environment and cd into the codebase directory when playing with the code later on
 
     ```bash
