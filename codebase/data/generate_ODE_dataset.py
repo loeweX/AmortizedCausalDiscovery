@@ -116,8 +116,6 @@ if __name__ == "__main__":
     if args.interaction_strength != 1:
         suffix += "_inter" + str(args.interaction_strength)
 
-    if args.lowfreq:
-        suffix += "_lowfreq"
     print(suffix)
 
     # NOTE: We first generate all sequences with same length as length_test
