@@ -56,7 +56,7 @@ def parse_args():
     parser.add_argument(
         "--save_dir",
         type=str,
-        default="./",
+        default="./data",
         help="Where to save the trained model, leave empty to not save anything.",
     )
     parser.add_argument(
@@ -116,8 +116,6 @@ if __name__ == "__main__":
     if args.interaction_strength != 1:
         suffix += "_inter" + str(args.interaction_strength)
 
-    if args.lowfreq:
-        suffix += "_lowfreq"
     print(suffix)
 
     # NOTE: We first generate all sequences with same length as length_test

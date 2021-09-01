@@ -164,7 +164,7 @@ def parse_args():
     parser.add_argument(
         "--datadir",
         type=str,
-        default="/home/slowe/Causal_NRI/codebase/data",
+        default="./data",
         help="Name of directory where data is stored.",
     )
     parser.add_argument(
