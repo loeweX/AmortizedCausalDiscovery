@@ -57,7 +57,7 @@ def parse_args():
         "--save_dir",
         type=str,
         default="./data",
-        help="Where to save the trained model, leave empty to not save anything.",
+        help="Where to save generated data.",
     )
     parser.add_argument(
         "--n_save_small",
