@@ -258,6 +258,7 @@ def parse_args():
     )
 
     args = parser.parse_args()
+    args.test = True
 
     ### Presets for different datasets ###
     if (
@@ -272,7 +273,8 @@ def parse_args():
         args.dims = 1
         args.num_atoms = 15
         args.timesteps = 200
-        args.validate = False
+        args.no_validate = True
+        args.test = False
 
     args.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     args.cuda = not args.no_cuda and torch.cuda.is_available()
