@@ -243,4 +243,5 @@ if __name__ == "__main__":
     print("Optimization Finished!")
     logs.write_to_log_file("Best Epoch: {:04d}".format(best_epoch))
 
-    test(encoder, decoder, epoch)
+    if args.test:
+        test(encoder, decoder, epoch)
