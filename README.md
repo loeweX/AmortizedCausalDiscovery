@@ -115,11 +115,11 @@ Additionally, you can watch my [presentation at NeurIPS 2019](https://slideslive
 Please cite our paper if you use this code in your own work:
 
 ```
-@article{lowe2020amortized,
+@article{lowe2022amortized,
   title={Amortized Causal Discovery: Learning to Infer Causal Graphs from Time-Series Data},
   author={L{\"o}we, Sindy and Madras, David and Zemel, Richard, and Welling, Max},
-  journal={arXiv preprint},
-  year={2020}
+  journal={Causal Learning and Reasoning (CLeaR)},
+  year={2022}
 }
 ```
 
